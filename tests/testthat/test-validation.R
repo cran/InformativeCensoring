@@ -5,9 +5,9 @@ test_that("checkContiguous",{
   expect_error(checkContiguous(c(2,2,1,1,1,3,3,3,2)))
   expect_error(checkContiguous(c("A","","A")))
   expect_error(checkContiguous(c(1,1,1,2,2,2,3,3,3,2,3,3,3)))
-  expect_that(checkContiguous(c(1,2,3,4)), not(throws_error()))
-  expect_that(checkContiguous(c(41)), not(throws_error()))
-  expect_that(checkContiguous(c("A","A","C","C","C","B")), not(throws_error()))
+  expect_error(checkContiguous(c(1,2,3,4)), NA)
+  expect_error(checkContiguous(c(41)), NA)
+  expect_error(checkContiguous(c("A","A","C","C","C","B")), NA)
 })
 
 test_that("checkPanelling_invalid",{
@@ -46,9 +46,9 @@ test_that("checkPanelling_valid",{
     data.frame(time.start=s,time.end=e)
   }
   
-  expect_that(checkPanelling(make.df(c(0),c(4))), not(throws_error()))
-  expect_that(checkPanelling(make.df(c(0,2.5,5,7),c(2.5,5,7,10))), not(throws_error()))
-  expect_that(checkPanelling(make.df(c(0,2.5,5,7),c(2.5,5,7,7.01))), not(throws_error()))
+  expect_error(checkPanelling(make.df(c(0),c(4))), NA)
+  expect_error(checkPanelling(make.df(c(0,2.5,5,7),c(2.5,5,7,10))), NA)
+  expect_error(checkPanelling(make.df(c(0,2.5,5,7),c(2.5,5,7,7.01))), NA)
 })
 
 
@@ -62,14 +62,14 @@ test_that(".getResponse",{
 test_that(".validRHSFormula",{
   #first without arm argument LHS must be empty
   expect_error(.validRHSFormula(formula(y~x)))  
-  expect_that(.validRHSFormula(formula(~a+b+c)),not(throws_error()) )
+  expect_error(.validRHSFormula(formula(~a+b+c)),NA)
   expect_error(.validRHSFormula(formula(~x+cluster(y))))
   expect_error(.validRHSFormula(formula(~tt(x)+y)))
-  expect_that(.validRHSFormula(formula(~a+strata(b)+c)),not(throws_error()) )
+  expect_error(.validRHSFormula(formula(~a+strata(b)+c)),NA)
   #if do have arm argument then it must be the first on the rhs
   #and no interaction terms with it
   expect_error(.validRHSFormula(formula(y~a),arm="a"))
-  expect_that(.validRHSFormula(formula(~a+b+c),arm="a"),not(throws_error()) )
+  expect_error(.validRHSFormula(formula(~a+b+c),arm="a"),NA)
   expect_error(.validRHSFormula(formula(~b+arm),arm="arm"))
   expect_error(.validRHSFormula(formula(~b),arm="arm"))
   expect_error(.validRHSFormula(formula(~arm+b*arm),arm="arm"))
@@ -141,7 +141,7 @@ test_that(".additionalScore.validate",{
   df <- data.frame(Id=c(1,6,9,21),event=c(0,0,1,1),time=c(4,5,6,7),
                    arm=factor(c("A","B","A","B")),DCO.time=c(4,5,6,7),to.impute=c(TRUE,TRUE,FALSE,FALSE))
   
-  expect_that(.additionalScore.validate(df,col.control=col.control,Call),not(throws_error()))
+  expect_error(.additionalScore.validate(df,col.control=col.control,Call),NA)
   
   
   df$arm <- factor(c("A","B","A","B"))             
@@ -182,7 +182,7 @@ test_that("validate_Score_arguments_control",{
   expect_error(validate.Score.Arguments(ScoreInd,col.control=col.control,NN.control=NN.control,NULL,Call,m=5))
   
   NN.control <- NN.options()
-  expect_that(validate.Score.Arguments(ScoreInd,col.control=col.control,NN.control=NN.control,NULL,Call,m=5),not(throws_error()))
+  expect_error(validate.Score.Arguments(ScoreInd,col.control=col.control,NN.control=NN.control,NULL,Call,m=5),NA)
   
 })
 
@@ -201,8 +201,8 @@ test_that("validate_Score_arguments_data_and_Call",{
   df <- data.frame(Id=c(1,6,9,21),event=c(0,0,1,1),time=c(4,5,6,7),
                    arm=factor(c("A","B","A","B")),DCO.time=c(4,5,6,7),to.impute=c(TRUE,TRUE,FALSE,FALSE))
   
-  expect_that(validate.Score.Arguments(df,col.control=col.control,NN.control=NN.control,NULL,
-                                       Call=Call,m=5),not(throws_error()))
+  expect_error(validate.Score.Arguments(df,col.control=col.control,NN.control=NN.control,NULL,
+                                       Call=Call,m=5),NA)
   
   #invalid m
   expect_error(validate.Score.Arguments(df,col.control=col.control,NN.control=NN.control,NULL,
@@ -298,8 +298,8 @@ test_that("validate_Score_arguments_timedep",{
   expect_error(validate.Score.Arguments(df,col.control=col.control,NN.control=NN.control,time.dep=time.dep.df,Call,m=5))
   
   #ok if both columns have Id
-  expect_that(validate.Score.Arguments(df,col.control=col.control,NN.control=NN.control,time.dep=time.dep,Call,m=5),
-                             not(throws_error()))
+  expect_error(validate.Score.Arguments(df,col.control=col.control,NN.control=NN.control,time.dep=time.dep,Call,m=5),
+                             NA)
   
   #invalid if both have same column names 
   df$W1 <- c(2,3,4,5)

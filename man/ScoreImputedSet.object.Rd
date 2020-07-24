@@ -28,7 +28,7 @@ for further details}
 
 \item{\code{default.formula}}{The default model formula which will be used when fitting the imputed data using a Cox model}
 }}
+
 \seealso{
 \code{\link{ScoreImputedData.object}}
 }
-

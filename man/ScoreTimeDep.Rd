@@ -4,7 +4,9 @@
 \name{ScoreTimeDep}
 \alias{ScoreTimeDep}
 \title{Simulated time dependent variables for time to event data}
-\format{A data.frame containing 1 row per subject-visit}
+\format{
+A data.frame containing 1 row per subject-visit
+}
 \description{
 This data set contains time dependent covariates for the
 \code{\link{ScoreInd}} time to event data.

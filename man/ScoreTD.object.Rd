@@ -20,4 +20,3 @@ by time and the starting time of a row should match the ending time of the previ
 \seealso{
 \code{\link{MakeTimeDepScore}}
 }
-

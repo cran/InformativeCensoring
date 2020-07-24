@@ -22,8 +22,8 @@ test_that("GammaImputeSet_object",{
   ans$internal_gamma_val <- NULL
   
   expect_equal(gamma.dataset,ans)
-  expect_equal("matrix",class(imputed.data.sets$impute.time))
-  expect_equal("matrix",class(imputed.data.sets$impute.event))
+  expect_equal(c("matrix","array"),class(imputed.data.sets$impute.time))
+  expect_equal(c("matrix","array"),class(imputed.data.sets$impute.event))
   
   expect_equal(2,ncol(imputed.data.sets$impute.time))
   expect_equal(nrow(gamma.dataset),nrow(imputed.data.sets$impute.event))

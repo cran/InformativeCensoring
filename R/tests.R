@@ -16,10 +16,10 @@
 .Testsurvdiff <- function(object,formula,rho,method,...){
   
   model <- survdiff(formula=formula,data=object$data,rho=rho,...)
-  
+
   list(model=model,
        method=paste(method,"(estimator for O-E)"),
-       estimate=if(class(model$obs)=="matrix") sum(model$obs[2,]-model$exp[2,]) else (model$obs[2]-model$exp[2]),
+       estimate=if(identical(class(model$obs),c("matrix","array"))) sum(model$obs[2,]-model$exp[2,]) else (model$obs[2]-model$exp[2]),
        var=model$var[2,2])
 }
 

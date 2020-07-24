@@ -4,10 +4,20 @@
 \alias{ScoreImpute}
 \title{Perform risk score multiple imputation method}
 \usage{
-ScoreImpute(data, event.model, censor.model = event.model, col.control,
-  NN.control = NN.options(), time.dep = NULL, m, bootstrap.strata = rep(1,
-  nrow(data)), ..., parallel = c("no", "multicore", "snow")[1], ncpus = 1L,
-  cl = NULL)
+ScoreImpute(
+  data,
+  event.model,
+  censor.model = event.model,
+  col.control,
+  NN.control = NN.options(),
+  time.dep = NULL,
+  m,
+  bootstrap.strata = rep(1, nrow(data)),
+  ...,
+  parallel = c("no", "multicore", "snow")[1],
+  ncpus = 1L,
+  cl = NULL
+)
 }
 \arguments{
 \item{data}{The data set for which imputation is required}
@@ -76,4 +86,3 @@ ans <- ScoreImpute(data=ScoreInd,event.model=~Z1+Z2+Z3+Z4+Z5,
 \seealso{
 \code{\link{ScoreImputedSet.object}}
 }
-

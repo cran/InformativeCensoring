@@ -45,7 +45,7 @@ test_that("NN.options",{
 })
 
 test_that("dummy.col.headings",{
-  expect_that(.dummy.col.headings(),not(throws_error()))
+  expect_error(.dummy.col.headings(),NA)
 })
 
 

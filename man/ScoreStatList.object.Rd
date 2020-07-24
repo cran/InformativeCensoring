@@ -22,7 +22,7 @@ the imputed data sets}
 
 \item{\code{m}}{The number of model fits}
 }}
+
 \seealso{
 \code{\link{ScoreStatSet.object}} \code{\link{ScoreStat.object}}
 }
-

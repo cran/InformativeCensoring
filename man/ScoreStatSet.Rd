@@ -18,4 +18,3 @@ S3 generic to create a \code{ScoreStatSet} object
 \seealso{
 \code{\link{ScoreStatSet.object}}
 }
-

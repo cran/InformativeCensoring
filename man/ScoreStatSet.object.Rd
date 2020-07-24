@@ -19,4 +19,3 @@ and estimates of the test statistic and p-value
 \seealso{
 \code{\link{summary.ScoreStatSet}}
 }
-

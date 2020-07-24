@@ -23,4 +23,3 @@ A \code{ScoreTD} object
 \description{
 Create a valid \code{ScoreTD} object
 }
-

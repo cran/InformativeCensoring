@@ -13,10 +13,11 @@ NULL
 .internal.is.wholenumber <- function(x, tol = .Machine$double.eps^0.5) abs(x - round(x)) < tol
 
 .internal.is.finite.number <- function(x){
-  if(!is.numeric(x) || is.na(x) || length(x)>1 || is.infinite(x)){
+  if (length(x)>1) {
     return(FALSE)
-  }
-  return(TRUE)
+  } else if(!is.numeric(x) || is.na(x) || is.infinite(x)){
+    return(FALSE)
+  } else return(TRUE)
 }
 
 ##' Extract a single risk score/gamma imputed data set/model fit

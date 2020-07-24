@@ -20,10 +20,10 @@ test_that("invalid_rhs_formula",{
                            gamma.factor=1))
   
   
-  expect_that(gammaImpute(formula=Surv(Yi,delta)~Z+strata(W1,W2),
+  expect_error(gammaImpute(formula=Surv(Yi,delta)~Z+strata(W1,W2),
                           gamma.dataset,DCO.time="DCO.time",m=2,gamma="gamma",
                           bootstrap.strata=strata(gamma.dataset$Z,gamma.dataset$W1),
-                          gamma.factor=1),not(throws_error()))
+                          gamma.factor=1),NA)
   
   
 })
@@ -33,10 +33,10 @@ test_that("validate_gamma_arguments_lhs_formula",{
   load("gamma_test.rda")
 
   #ok to have expression in Surv
-  expect_that(gammaImpute(formula=Surv(Yi,delta==W2)~Z+strata(W1),
+  expect_error(gammaImpute(formula=Surv(Yi,delta==W2)~Z+strata(W1),
                           gamma.dataset,DCO.time="DCO.time",m=2,gamma="gamma",
                           bootstrap.strata=strata(gamma.dataset$Z,gamma.dataset$W1),
-                          gamma.factor=1),not(throws_error()))
+                          gamma.factor=1),NA)
   
   #no lhs
   expect_error(gammaImpute(formula=~Z+strata(W1),
@@ -64,10 +64,10 @@ test_that("validate_gamma_arguments_m_gammafactor_and_strata_call",{
   Call <- call("mycall",event.model=~Z1+Z2)
   
   
-  expect_that(validate.Gamma.arguments(data=gamma.dataset,surv.times=surv.times,
+  expect_error(validate.Gamma.arguments(data=gamma.dataset,surv.times=surv.times,
                                        m=2,gamma="gamma",
                                        strata=rep(1,nrow(gamma.dataset)),
-                                       gamma.factor=1,DCO.time="DCO.time",Call=Call), not(throws_error()))
+                                       gamma.factor=1,DCO.time="DCO.time",Call=Call), NA)
   
   
   #m

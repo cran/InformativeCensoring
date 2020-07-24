@@ -28,7 +28,7 @@ which is the value of gamma used for each subject in this data set)}
 
 \item{\code{default.formula}}{The default model formula which will be used when fitting the imputed data}
 }}
+
 \seealso{
 \code{\link{GammaImputedData.object}}
 }
-

@@ -13,7 +13,7 @@ test_that("GammaStat",{
   
   expect_error(ImputeStat(df,method="Wilcoxon"))
   expect_error(ImputeStat(df,method="logrank"))
-  expect_that(ImputeStat(df,method="Cox"),not(throws_error())) #no error uses default formula
+  expect_error(ImputeStat(df,method="Cox"),NA) #no error uses default formula
   
   expect_error(ImputeStat(df,method="Cox",formula=~cluster(W1)))
   expect_error(ImputeStat(df,method="Cox",formula=~Z+tt(W1)))
@@ -112,8 +112,8 @@ test_that("GammaStatSet",{
   
   expect_equal(2,length(ans$fits))
   expect_equal(c("estimates","vars"),names(ans$statistics))
-  expect_equal("matrix",class(ans$statistics$estimates))
-  expect_equal("matrix",class(ans$statistics$vars))
+  expect_equal(c("matrix","array"),class(ans$statistics$estimates))
+  expect_equal(c("matrix","array"),class(ans$statistics$vars))
   expect_equal(2,nrow(ans$statistics$estimates))
   expect_equal(1,ncol(ans$statistics$vars))
   expect_equal("W1",colnames(ans$statistics$vars))
@@ -137,8 +137,8 @@ test_that("GammaStatSet_multiplecovar",{
   ans <- ImputeStat(imputed,method="Cox",formula=~Z+strata(W1))
   
   expect_equal(3,length(ans$fits))
-  expect_equal("matrix",class(ans$statistics$estimates))
-  expect_equal("matrix",class(ans$statistics$vars))
+  expect_equal(c("matrix","array"),class(ans$statistics$estimates))
+  expect_equal(c("matrix","array"),class(ans$statistics$vars))
   expect_equal(3,nrow(ans$statistics$estimates))
   expect_equal(2,ncol(ans$statistics$vars))
   expect_equal(c("Z1","Z2"),colnames(ans$statistics$vars))
@@ -168,7 +168,7 @@ test_that("summary_1_covar",{
   class(fits) <- "GammaStatList"
   
   ans <- summary(fits)
-  expect_equal("matrix",class(ans))
+  expect_equal(c("matrix","array"),class(ans))
 
   expect_equal("W1",rownames(ans))
   expect_equal(c("est","se","t","df","Pr(>|t|)","lo 95","hi 95"),colnames(ans))

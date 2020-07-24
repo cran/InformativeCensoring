@@ -19,6 +19,7 @@ and methRubin follows Rubin's standard rules and is used for calculating
 confidence intervals
 
 See the vignette for further details.
+ 
 
 meth1, meth2 and methRubin are lists with the following elements:
 estimate: average estimator for meth1, NOTE: for meth2 this is the average test statistic, \cr
@@ -27,4 +28,3 @@ test.stat: test statistic \cr
 distribution: distribution of statistical test (i.e. F or t) \cr
 p.value: p-value of test \cr
 }
-

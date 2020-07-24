@@ -29,8 +29,8 @@ test_that("ScoreImputeSet_extract",{
   
   expect_equal(ScoreInd,ans$data)
   
-  expect_equal("matrix",class(ans$impute.time))
-  expect_equal("matrix",class(ans$impute.event))
+  expect_equal(c("matrix","array"),class(ans$impute.time))
+  expect_equal(c("matrix","array"),class(ans$impute.event))
   expect_equal(400,nrow(ans$impute.time))
   expect_equal(6,ncol(ans$impute.event))
   

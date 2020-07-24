@@ -27,4 +27,3 @@ function
 Create a list of options which control the nearest neighbour algorithm
 for risk score imputation
 }
-

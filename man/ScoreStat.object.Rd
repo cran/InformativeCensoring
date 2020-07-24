@@ -10,7 +10,7 @@ a \code{ScoreImputedData} object.
 }
 \details{
 The functions \code{print.ScoreStat} and \code{as.vector.ScoreStat}
-have been included
+have been included 
 
 The object contains the following:
 

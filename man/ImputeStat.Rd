@@ -7,19 +7,39 @@
 \alias{ImputeStat.ScoreImputedSet}
 \title{S3 generic to fit model(s) to risk score/gamma Imputed objects}
 \usage{
-\method{ImputeStat}{GammaImputedData}(object, method = c("Cox", "weibull",
-  "exponential")[1], formula = NULL, ...)
+\method{ImputeStat}{GammaImputedData}(
+  object,
+  method = c("Cox", "weibull", "exponential")[1],
+  formula = NULL,
+  ...
+)
 
-\method{ImputeStat}{GammaImputedSet}(object, method = c("Cox", "weibull",
-  "exponential")[1], formula = NULL, ..., parallel = c("no", "multicore",
-  "snow")[1], ncpus = 1L, cl = NULL)
+\method{ImputeStat}{GammaImputedSet}(
+  object,
+  method = c("Cox", "weibull", "exponential")[1],
+  formula = NULL,
+  ...,
+  parallel = c("no", "multicore", "snow")[1],
+  ncpus = 1L,
+  cl = NULL
+)
 
-ImputeStat(object, method = c("logrank", "Wilcoxon", "Cox", "weibull",
-  "exponential")[1], formula, ...)
+ImputeStat(
+  object,
+  method = c("logrank", "Wilcoxon", "Cox", "weibull", "exponential")[1],
+  formula,
+  ...
+)
 
-\method{ImputeStat}{ScoreImputedSet}(object, method = c("logrank", "Wilcoxon",
-  "Cox")[1], formula = NULL, ..., parallel = c("no", "multicore",
-  "snow")[1], ncpus = 1L, cl = NULL)
+\method{ImputeStat}{ScoreImputedSet}(
+  object,
+  method = c("logrank", "Wilcoxon", "Cox")[1],
+  formula = NULL,
+  ...,
+  parallel = c("no", "multicore", "snow")[1],
+  ncpus = 1L,
+  cl = NULL
+)
 }
 \arguments{
 \item{object}{A \code{ScoreImputedData}, \code{ScoreImputedSet}, \code{GammaImputedData} or \code{GammaImputedSet} object 
@@ -65,4 +85,3 @@ S3 generic to fit model(s) to risk score/gamma Imputed objects
 \seealso{
 \code{\link{ScoreStat.object}} \code{\link{ScoreImputedData.object}}
 }
-

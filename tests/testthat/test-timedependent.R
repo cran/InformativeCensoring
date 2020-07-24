@@ -90,7 +90,7 @@ test_that(".getTimeDepDataSet_invalid",{
   #missing Id
   expect_error(.getTimeDepDataSet(baseline.df,td,"Sub","time",my.time=NULL))
   
-  expect_that(.getTimeDepDataSet(baseline.df[1:2,],td,"Sub","time",my.time=NULL),not(throws_error()))
+  expect_error(.getTimeDepDataSet(baseline.df[1:2,],td,"Sub","time",my.time=NULL),NA)
   
   #missing someone
   expect_error(.getTimeDepDataSet(baseline.df[1:2,],td,"Sub","time",my.time=14)) 

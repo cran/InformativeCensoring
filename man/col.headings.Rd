@@ -4,8 +4,7 @@
 \alias{col.headings}
 \title{Specify the columns of the data frame required by score imputation method}
 \usage{
-col.headings(arm, has.event, time, Id, DCO.time, to.impute,
-  censor.type = NULL)
+col.headings(arm, has.event, time, Id, DCO.time, to.impute, censor.type = NULL)
 }
 \arguments{
 \item{arm}{column name which will contain the subject's treatment group}
@@ -34,4 +33,3 @@ A list contain the given arguments
 \description{
 Specify the columns of the data frame required by score imputation method
 }
-

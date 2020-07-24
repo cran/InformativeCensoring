@@ -1,7 +1,7 @@
-## ----message=FALSE-------------------------------------------------------
+## ----message=FALSE------------------------------------------------------------
 library(InformativeCensoring)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 data(nwtco)
 
 #only use first 500 subjects
@@ -9,40 +9,40 @@ nwtco <- nwtco[1:500,]
 head(nwtco)
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #Set random number seed
 set.seed(3957129)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 nwtco$basegamma <- 1
 nwtco$basegamma[nwtco$histol==2] <- NA
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #Create the m imputed data sets (a GammaImputedSet object)
 imputed.data.sets <- gammaImpute(formula=Surv(edrel,rel)~histol + instit + strata(stage),
                                  data = nwtco, m=10, 
                                  gamma="basegamma", gamma.factor=0.5, DCO.time=6209)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #Fit Cox models onto each imputed data set (a GammaStatList object)
 imputed.fits <- ImputeStat(imputed.data.sets)
 
 #Combine the results using Rubin's rules
 summary(imputed.fits)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fits.weibull <- ImputeStat(imputed.data.sets,method="weibull",formula=~histol)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 imputed.fits$statistics
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #for the third data set
 imputed.data.set <- ExtractSingle(imputed.data.sets,index=3)
 
 head(imputed.data.set$data)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 fifth.fit <- ExtractSingle(imputed.fits,index=5)
 
 print(fifth.fit)
@@ -55,7 +55,7 @@ test.assump <- cox.zph(imputed.fits,index=3,transform="km")
 print(test.assump)
 plot(test.assump[1],main="Scaled Schoenfeld Residuals for histol")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 set.seed(6110)
 #simulate a time to event dataset, with two treatment groups
 #note that here we are simulating with non-informative censoring
@@ -72,22 +72,22 @@ gamma.dataset$Y <- pmin(T,C,3)
 gamma.dataset$delta <- 1*((T < C) & (T <3))
 gamma.dataset$Z <- factor(gamma.dataset$Z)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 obsDataCox <- coxph(Surv(Y,delta) ~ Z, data=gamma.dataset)
 summary(obsDataCox)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 gamma.dataset$basegamma <- NA
 gamma.dataset$basegamma[(gamma.dataset$Y < 3) & (gamma.dataset$Z==1)] <- 1
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 imputed.data.sets <- gammaImpute(formula=Surv(Y,delta)~Z,
                                    data = gamma.dataset, m=100, gamma="basegamma",
                                    gamma.factor=0, DCO.time="DCO.time")
 fits <- ImputeStat(imputed.data.sets)
 summary(fits)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 gamma.dataset.copy <- gamma.dataset
 gamma.dataset.copy$Y[(gamma.dataset.copy$Z==1) & (gamma.dataset.copy$delta==0) & 
                         (gamma.dataset.copy$Y<gamma.dataset.copy$DCO.time)] <- 
@@ -96,27 +96,27 @@ gamma.dataset.copy$Y[(gamma.dataset.copy$Z==1) & (gamma.dataset.copy$delta==0) &
 gamma.dataset.copy$delta[(gamma.dataset.copy$Z==1) & (gamma.dataset.copy$delta==0) & 
                         (gamma.dataset.copy$Y<gamma.dataset.copy$DCO.time)] <- 1
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 immFailureCox <- coxph(Surv(Y,delta) ~ Z, data=gamma.dataset.copy)
 summary(immFailureCox)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 imputed.data.sets <- gammaImpute(formula=Surv(Y,delta)~Z,
                                    data = gamma.dataset, m=100, gamma="basegamma",
                                    gamma.factor=1000, DCO.time="DCO.time")
 fits <- ImputeStat(imputed.data.sets)
 summary(fits)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 gamma.dataset.copy <- gamma.dataset
 gamma.dataset.copy$Y[(gamma.dataset.copy$Z==1) & (gamma.dataset.copy$delta==0) & 
                         (gamma.dataset.copy$Y<gamma.dataset.copy$DCO.time)] <- 3
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 noFailureCox <- coxph(Surv(Y,delta) ~ Z, data=gamma.dataset.copy)
 summary(noFailureCox)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 imputed.data.sets <- gammaImpute(formula=Surv(Y,delta)~Z,
                                    data = gamma.dataset, m=100, gamma="basegamma",
                                    gamma.factor=-1000, DCO.time="DCO.time")

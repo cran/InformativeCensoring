@@ -4,9 +4,19 @@
 \alias{gammaImpute}
 \title{Perform gamma-Imputation for a given data set}
 \usage{
-gammaImpute(formula, data, m, gamma, gamma.factor, bootstrap.strata = rep(1,
-  nrow(data)), DCO.time, ..., parallel = c("no", "multicore", "snow")[1],
-  ncpus = 1L, cl = NULL)
+gammaImpute(
+  formula,
+  data,
+  m,
+  gamma,
+  gamma.factor,
+  bootstrap.strata = rep(1, nrow(data)),
+  DCO.time,
+  ...,
+  parallel = c("no", "multicore", "snow")[1],
+  ncpus = 1L,
+  cl = NULL
+)
 }
 \arguments{
 \item{formula}{The model formula to be used when fitting the models to calculate
@@ -91,4 +101,3 @@ ans.3 <- gammaImpute(formula=Surv(edrel,rel)~histol + instit + strata(stage),
 \seealso{
 \code{\link{GammaImputedSet.object}} \code{\link{GammaImputedData.object}}
 }
-

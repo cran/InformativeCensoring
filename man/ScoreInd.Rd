@@ -4,7 +4,9 @@
 \name{ScoreInd}
 \alias{ScoreInd}
 \title{Simulated time to event data with 5 time independent covariates}
-\format{A data.frame containing a row per subject with eleven columns:}
+\format{
+A data.frame containing a row per subject with eleven columns:
+}
 \description{
 This dataset is inspired by the simulation described in Hsu and Taylor,
 Statistics in Medicine (2009) 28:462-475 with an additional DCO.time column

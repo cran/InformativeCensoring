@@ -9,7 +9,7 @@ a \code{GammaImputedSet} object.
 }
 \details{
 A \code{summary.GammaStatList} has been implemented which performs
-Rubin's multiple imputation rules.
+Rubin's multiple imputation rules. 
 
 The object contains the following
 }
