@@ -120,7 +120,7 @@ gammaImpute <- function(formula, data, m, gamma, gamma.factor,
   #Get the Surv object
   surv.object <- model.frame(formula,data)[,1]
   surv.times <- as.matrix(surv.object)
-  if(class(surv.object) != "Surv" ||  attr(surv.object,"type")!="right" || ncol(surv.times)!=2){
+  if((inherits(surv.object,"Surv")!=TRUE) ||  attr(surv.object,"type")!="right" || ncol(surv.times)!=2){
     stop("Can only use a right censored Surv object on the left hand side of the formula")
   }
 

@@ -1,6 +1,5 @@
 # InformativeCensoring
 
-[![Travis build status](https://travis-ci.com/jwb133/InformativeCensoring.svg?branch=master)](https://travis-ci.com/jwb133/InformativeCensoring)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/InformativeCensoring)](https://cran.r-project.org/package=InformativeCensoring)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/InformativeCensoring)](https://cran.r-project.org/package=InformativeCensoring)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/InformativeCensoring)](https://cran.r-project.org/package=InformativeCensoring)

@@ -6,7 +6,7 @@
 #interactions between arm and other covariates)
 .validRHSFormula <- function(formula,arm=NULL){
   
-  if(class(formula)!="formula") stop("Invalid formula is not of type formula")
+  if(inherits(formula,"formula")!=TRUE) stop("Invalid formula is not of type formula")
   
   if(length(.getResponse(formula))!=0){
     stop("formula cannot have any variables on the left hand side.")
